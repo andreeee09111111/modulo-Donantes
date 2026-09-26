@@ -1,0 +1,7 @@
+*
+!requirements.txt
+!app.py
+!validation.py
+!donations.py
+!static/
+!static/**

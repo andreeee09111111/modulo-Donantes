@@ -1,0 +1,17 @@
+{
+  "resultado": "APROBADO",
+  "navegador": "Microsoft Edge / Playwright",
+  "escenarios": [
+    "Alta de organizaciones desde interfaz de Administrador",
+    "Alta de perfil propio",
+    "Registro de donación con destino y recolección",
+    "Seguimiento: pendiente → aprobada → en camino → entregada",
+    "Usuario no puede aprobar: HTTP 403",
+    "Buscador y filtro de estado",
+    "Cancelación por propietario",
+    "Privacidad entre donantes: listado vacío y detalle HTTP 403",
+    "Panel a 390 px sin desbordamiento",
+    "Sin errores JavaScript"
+  ],
+  "datos": "Ficticios, base temporal separada de la base del usuario."
+}

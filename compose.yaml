@@ -1,0 +1,18 @@
+services:
+  donantes:
+    build: .
+    ports:
+      - "127.0.0.1:5000:5000"
+    environment:
+      SECRET_KEY: ${SECRET_KEY:?Configura SECRET_KEY antes de iniciar}
+      DATABASE: /data/donantes.db
+    volumes:
+      - donantes-data:/data
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://127.0.0.1:5000/health')"]
+      interval: 15s
+      timeout: 5s
+      retries: 3
+volumes:
+  donantes-data:

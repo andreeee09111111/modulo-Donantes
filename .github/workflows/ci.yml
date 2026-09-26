@@ -1,0 +1,70 @@
+name: Donantes - pruebas, build y despliegue temporal
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: pip install -r requirements-dev.txt
+      - run: python -m pytest --cov=app --cov=validation --cov=donations --cov-branch --cov-fail-under=90 --cov-report=xml:evidencias/coverage.xml --cov-report=html:evidencias/cobertura --junitxml=evidencias/resultados.xml
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: pruebas-y-cobertura
+          path: evidencias/
+  build-deploy:
+    needs: test
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Construir imagen
+        run: docker build -t modulo-donantes:${{ github.sha }} .
+      - name: Desplegar contenedor en entorno temporal de CI
+        run: |
+          docker run -d --name donantes -p 127.0.0.1:5000:5000 -e SECRET_KEY="$(openssl rand -hex 32)" modulo-donantes:${{ github.sha }}
+          for i in $(seq 1 30); do
+            if curl --fail http://127.0.0.1:5000/health; then exit 0; fi
+            sleep 2
+          done
+          docker logs donantes
+          exit 1
+      - name: Verificar aplicación desplegada
+        run: |
+          curl --fail http://127.0.0.1:5000/app
+          test "$(curl -s -o /dev/null -w '%{http_code}' http://127.0.0.1:5000/api/donantes)" = "401"
+      - name: Guardar imagen construida
+        run: docker save modulo-donantes:${{ github.sha }} | gzip > modulo-donantes.tar.gz
+      - uses: actions/upload-artifact@v4
+        with:
+          name: imagen-donantes
+          path: modulo-donantes.tar.gz
+      - name: Detener despliegue temporal
+        if: always()
+        run: docker rm -f donantes || true
+  deploy-host:
+    if: github.ref == 'refs/heads/main' && github.event_name != 'pull_request' && vars.DEPLOY_ENABLED == 'true'
+    needs: build-deploy
+    runs-on: ubuntu-latest
+    environment: produccion
+    steps:
+      - name: Solicitar despliegue persistente al proveedor configurado
+        env:
+          DEPLOY_HOOK: ${{ secrets.DEPLOY_HOOK }}
+        run: |
+          test -n "$DEPLOY_HOOK"
+          curl --fail --silent --show-error -X POST "$DEPLOY_HOOK"
+      - name: Comprobar disponibilidad
+        env:
+          HEALTH_URL: ${{ vars.HEALTH_URL }}
+        run: |
+          test -n "$HEALTH_URL"
+          curl --fail --retry 12 --retry-all-errors --retry-delay 10 "$HEALTH_URL"
+

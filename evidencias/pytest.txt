@@ -1,0 +1,90 @@
+============================= test session starts =============================
+platform win32 -- Python 3.12.14, pytest-9.1.1, pluggy-1.6.0 -- C:\Users\jesus\Documents\Codex\2026-09-26\so\work\venv\Scripts\python.exe
+cachedir: .pytest_cache
+rootdir: C:\Users\jesus\Documents\Codex\2026-09-26\so\outputs\modulo-donantes-completo
+configfile: pytest.ini
+testpaths: tests
+plugins: cov-7.1.0
+collecting ... collected 65 items
+
+tests/test_donaciones.py::test_complete_lifecycle_and_history PASSED     [  1%]
+tests/test_donaciones.py::test_donation_privacy PASSED                   [  3%]
+tests/test_donaciones.py::test_cancel_and_terminal_rules PASSED          [  4%]
+tests/test_donaciones.py::test_status_validation PASSED                  [  6%]
+tests/test_donaciones.py::test_donation_validation_unit[titulo-] PASSED  [  7%]
+tests/test_donaciones.py::test_donation_validation_unit[titulo-aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa] PASSED [  9%]
+tests/test_donaciones.py::test_donation_validation_unit[cantidad-0] PASSED [ 10%]
+tests/test_donaciones.py::test_donation_validation_unit[cantidad-True] PASSED [ 12%]
+tests/test_donaciones.py::test_donation_validation_unit[cantidad-1.5] PASSED [ 13%]
+tests/test_donaciones.py::test_donation_validation_unit[cantidad-100001] PASSED [ 15%]
+tests/test_donaciones.py::test_donation_validation_unit[categoria-dinero] PASSED [ 16%]
+tests/test_donaciones.py::test_donation_validation_unit[unidad-monedas] PASSED [ 18%]
+tests/test_donaciones.py::test_donation_validation_unit[modalidad-otro] PASSED [ 20%]
+tests/test_donaciones.py::test_donation_validation_unit[organizacion_id-True] PASSED [ 21%]
+tests/test_donaciones.py::test_donation_validation_unit[organizacion_id-1000000000000000000000000000000] PASSED [ 23%]
+tests/test_donaciones.py::test_donation_validation_unit[fecha_prevista-2025-99-99] PASSED [ 24%]
+tests/test_donaciones.py::test_donation_validation_unit[fecha_prevista-2026-09-25] PASSED [ 26%]
+tests/test_donaciones.py::test_donation_validation_unit[fecha_prevista-2027-09-27] PASSED [ 27%]
+tests/test_donaciones.py::test_donation_validation_unit[descripcion-aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa] PASSED [ 29%]
+tests/test_donaciones.py::test_donation_validation_unit[estado-entregada] PASSED [ 30%]
+tests/test_donaciones.py::test_donation_validation_unit[donante_id-999] PASSED [ 32%]
+tests/test_donaciones.py::test_donation_validation_unit[titulo-abc\x00] PASSED [ 33%]
+tests/test_donaciones.py::test_validation_endpoints_and_pickup PASSED    [ 35%]
+tests/test_donaciones.py::test_creation_restrictions PASSED              [ 36%]
+tests/test_donaciones.py::test_organization_permissions_and_inactive PASSED [ 38%]
+tests/test_donaciones.py::test_destination_snapshot_and_prevent_history_deletion PASSED [ 40%]
+tests/test_donaciones.py::test_organization_duplicates_and_missing PASSED [ 41%]
+tests/test_donaciones.py::test_organization_validation_unit PASSED       [ 43%]
+tests/test_donaciones.py::test_persistence_of_donations PASSED           [ 44%]
+tests/test_donaciones.py::test_additive_migration_preserves_accounts PASSED [ 46%]
+tests/test_donantes.py::test_login_jwt PASSED                            [ 47%]
+tests/test_donantes.py::test_crud_and_admin PASSED                       [ 49%]
+tests/test_donantes.py::test_isolation PASSED                            [ 50%]
+tests/test_donantes.py::test_invalid_fields[nombre-] PASSED              [ 52%]
+tests/test_donantes.py::test_invalid_fields[nombre-a] PASSED             [ 53%]
+tests/test_donantes.py::test_invalid_fields[nombre-aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa] PASSED [ 55%]
+tests/test_donantes.py::test_invalid_fields[nombre-12] PASSED            [ 56%]
+tests/test_donantes.py::test_invalid_fields[nombre-None] PASSED          [ 58%]
+tests/test_donantes.py::test_invalid_fields[nombre-a\nb] PASSED          [ 60%]
+tests/test_donantes.py::test_invalid_fields[email-incorrecto] PASSED     [ 61%]
+tests/test_donantes.py::test_invalid_fields[telefono-123] PASSED         [ 63%]
+tests/test_donantes.py::test_invalid_fields[telefono-abcdefghij] PASSED  [ 64%]
+tests/test_donantes.py::test_invalid_fields[tipo-otro] PASSED            [ 66%]
+tests/test_donantes.py::test_invalid_fields[direccion-] PASSED           [ 67%]
+tests/test_donantes.py::test_duplicate PASSED                            [ 69%]
+tests/test_donantes.py::test_non_object[body0] PASSED                    [ 70%]
+tests/test_donantes.py::test_non_object[None] PASSED                     [ 72%]
+tests/test_donantes.py::test_non_object[texto] PASSED                    [ 73%]
+tests/test_donantes.py::test_non_object[1] PASSED                        [ 75%]
+tests/test_donantes.py::test_non_object[True] PASSED                     [ 76%]
+tests/test_donantes.py::test_mass_assignment PASSED                      [ 78%]
+tests/test_donantes.py::test_token_rejection[missing] PASSED             [ 80%]
+tests/test_donantes.py::test_token_rejection[garbage] PASSED             [ 81%]
+tests/test_donantes.py::test_token_rejection[expired] PASSED             [ 83%]
+tests/test_donantes.py::test_token_rejection[forged] PASSED              [ 84%]
+tests/test_donantes.py::test_token_rejection[no-exp] PASSED              [ 86%]
+tests/test_donantes.py::test_token_rejection[bad-sub] PASSED             [ 87%]
+tests/test_donantes.py::test_token_rejection[unknown-user] PASSED        [ 89%]
+tests/test_donantes.py::test_login_validation_and_limit PASSED           [ 90%]
+tests/test_donantes.py::test_bad_requests PASSED                         [ 92%]
+tests/test_donantes.py::test_persistence PASSED                          [ 93%]
+tests/test_donantes.py::test_admin_owner_and_status PASSED               [ 95%]
+tests/test_donantes.py::test_headers_and_frontend PASSED                 [ 96%]
+tests/test_donantes.py::test_config_and_cli PASSED                       [ 98%]
+tests/test_donantes.py::test_validation_normalization PASSED             [100%]
+
+- generated xml file: C:\Users\jesus\Documents\Codex\2026-09-26\so\outputs\modulo-donantes-completo\evidencias\resultados.xml -
+=============================== tests coverage ================================
+______________ coverage: platform win32, python 3.12.14-final-0 _______________
+
+Name            Stmts   Miss Branch BrPart  Cover   Missing
+-----------------------------------------------------------
+app.py            218      2     50      1    99%   109, 279
+donations.py      188      0     64      0   100%
+validation.py      30      0     18      0   100%
+-----------------------------------------------------------
+TOTAL             436      2    132      1    99%
+Coverage HTML written to dir evidencias/cobertura
+Coverage XML written to file evidencias/coverage.xml
+Required test coverage of 90% reached. Total coverage: 99.47%
+======================= 65 passed in 152.52s (0:02:32) ========================
